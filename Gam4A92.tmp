@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dba1mexeotgvw"]
+
+[ext_resource type="Script" path="res://carrot.gd" id="1_be8gp"]
+[ext_resource type="Texture2D" uid="uid://dkf5kabxx8tqp" path="res://Carrot bounce 1.png" id="2_gpise"]
+[ext_resource type="Texture2D" uid="uid://msyeh5erujwx" path="res://icon.svg" id="3_r5h2b"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="4_git1a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgmbi"]
+radius = 50.0
+height = 175.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4ajv"]
+size = Vector2(132, 132)
+
+[node name="Game" type="Node2D"]
+
+[node name="CARROT" type="CharacterBody2D" parent="."]
+script = ExtResource("1_be8gp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CARROT"]
+shape = SubResource("CapsuleShape2D_hgmbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="CARROT/CollisionShape2D"]
+scale = Vector2(10, 10)
+texture = ExtResource("2_gpise")
+
+[node name="Camera2D" type="Camera2D" parent="CARROT"]
+position_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 218)
+scale = Vector2(10, 1)
+shape = SubResource("RectangleShape2D_w4ajv")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+texture = ExtResource("3_r5h2b")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("4_git1a")
